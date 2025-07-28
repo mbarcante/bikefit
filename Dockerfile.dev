@@ -1,0 +1,9 @@
+# Usa a imagem oficial do SQL Server 2022 como base
+FROM mcr.microsoft.com/mssql/server:2022-latest
+
+# Garante que as operações de instalação sejam executadas como root
+USER root
+
+# Instala o netcat-traditional para o healthcheck básico
+RUN apt-get update && apt-get install -y netcat-traditional \
+    && rm -rf /var/lib/apt/lists/*

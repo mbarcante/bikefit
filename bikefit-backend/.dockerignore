@@ -1,0 +1,28 @@
+node_modules/
+
+# Logs e arquivos de debug
+npm-debug.log
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
+
+# Arquivos de editor e IDEs
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.bak
+
+# Pastas de build/dist
+build/
+dist/
+tmp/
+
+# Outros
+coverage/
+.nyc_output/
+.git/ # Se o contexto de build for a raiz do repositório
+.gitignore
+README.md

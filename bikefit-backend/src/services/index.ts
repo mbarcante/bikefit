@@ -1,0 +1,9 @@
+export { default as ClientService } from "./ClientService";
+export { default as UserService } from "./UserService";
+export { default as BikeService } from "./BikeService";
+export { default as BikeTypeService } from "./BikeTypeService";
+export { default as BikeFitService } from "./BikeFitService";
+export { default as ArticularAnglesService } from "./ArticularAnglesService";
+export { default as RimService } from "./RimService";
+export { default as PostureEvaluationService } from "./PostureEvaluationService";
+export { default as FrameService } from "./FrameService";

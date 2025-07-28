@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "es2021",
+    "module": "commonjs",
+    "lib": [
+      "es2021"
+    ],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    /* Módulos */
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "sourceMap": true,
+    "declaration": false,
+    "noEmitOnError": true,
+    "inlineSources": true,
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/routers/ClientRouterts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

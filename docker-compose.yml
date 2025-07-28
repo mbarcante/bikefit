@@ -1,0 +1,63 @@
+services:
+  sqlserver:
+    container_name: bikefit-sqlserver
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Senhadificil1!"
+      MSSQL_PID: "Developer"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      - ./sqlserver-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 1433 || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+
+  backend:
+    container_name: bikefit-backend
+    build:
+      context: ./bikefit-backend 
+      dockerfile: Dockerfile.dev 
+    ports:
+      - "3001:3001" 
+    volumes:
+      - ./bikefit-backend:/app 
+      - /app/node_modules 
+    environment:
+      DB_HOST: sqlserver
+      DB_PORT: 1433
+      DB_USER: sa
+      DB_PASSWORD: Senhadificil1!
+      DB_DATABASE: bikefit
+ 
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+
+ 
+  frontend:
+    container_name: bikefit-frontend
+    build:
+      context: ./bikefit-frontend
+      dockerfile: Dockerfile.dev 
+    ports:
+      - "3000:3000" 
+    volumes:
+      - ./bikefit-frontend:/app
+      - /app/node_modules 
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+      REACT_APP_API_URL: http://localhost:3001
+    depends_on:
+      - backend #
+
+volumes:
+  sqlserver_data:

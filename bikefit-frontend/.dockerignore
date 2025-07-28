@@ -1,0 +1,24 @@
+node_modules/
+
+# Logs e arquivos de debug
+npm-debug.log
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
+
+# Arquivos de editor e IDEs
+.vscode/
+
+# Pastas de build/dist
+build/
+dist/
+tmp/
+
+# Outros
+coverage/
+.nyc_output/
+.git/
+.gitignore
+README.md

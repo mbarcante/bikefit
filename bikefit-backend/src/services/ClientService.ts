@@ -1,4 +1,4 @@
-import { Client, Bike } from "@/models";
+import { Client, Bike, PostureEvaluation } from "@/models";
 import { IClientCreationAttributes } from "@/interfaces";
 export class ClientService {
   public async getAllClients(): Promise<Client[]> {
@@ -10,17 +10,17 @@ export class ClientService {
     const clientBikes = await Bike.findAll({ where: { clientId: id } });
     return clientBikes;
   }
-  public async getClientById(clientId: number): Promise<Client> {
+  public async getClientPostureEvaluations(id: number): Promise<PostureEvaluation[]> {
+    const clientPostures = await PostureEvaluation.findAll({ where: { clientId: id } })
+    return clientPostures;
+  }
+  public async getClientById(clientId: number): Promise<Client | null> {
     const client = await Client.findByPk(clientId);
-    if (client === null)
-      throw new Error("Não há cliente que corresponda a esse id");
+
     return client;
   }
   public async getClientByEmail(clientEmail: string): Promise<Client | null> {
     const client = await Client.findOne({ where: { email: clientEmail } });
-    if (client === null) {
-      throw new Error("Não há cliente que corresponda a esse e-mail");
-    }
     return client;
   }
   public async createClient(data: IClientCreationAttributes): Promise<Client> {
@@ -41,8 +41,9 @@ export class ClientService {
 
   public async deleteClient(clientId: number): Promise<void> {
     const client = await this.getClientById(clientId);
-    if (client === null)
+    if (client === null) {
       throw new Error(`Cliente com ID ${clientId} não encontrado.`);
+    }
     client.destroy();
   }
 }

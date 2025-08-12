@@ -6,6 +6,7 @@ const router = Router();
 router.get("/", ClientController.getAllClients);
 router.get("/:id", ClientController.getClientById);
 router.get("/bikes/:id", ClientController.getClientBikes);
+router.get("/postureEvaluations/:id", ClientController.getClientPostures);
 router.get("/email/:email", ClientController.getClientByEmail);
 router.post("/", ClientController.createClient);
 router.patch("/:id", ClientController.updateClient);

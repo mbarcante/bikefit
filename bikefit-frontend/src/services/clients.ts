@@ -1,39 +1,33 @@
-import { IClient, IClientCreationPayload } from "../interfaces";
-
-const url = "http://localhost:3001";
-
-// const getToken = () => {
-//   const tokens = sessionStorage.getItem("session");
-//   if (!tokens) throw new Error("No session");
-//   const accessToken = JSON.parse(tokens).accessToken;
-//   return accessToken;
-// };
+import { IClient, IClientCreationPayload, IPostureEvaluation } from '../types';
+import { API_BASE_URL, getStandardHeaders } from './utils';
 
 export class ClientService {
-  getAllClients = (): Promise<IClient[]> => {
-    const headers = {
-      "Content-type": "application/json",
-      // Authorization: `Bearer ${acessToken}`,
-    };
-    return fetch(`${url}/api/clients`, {
-      method: "GET",
-      headers,
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.error) {
-          throw new Error(res.message);
-        }
-        return res;
+  getAllClients = async (): Promise<IClient[]> => {
+    try {
+      const headers = getStandardHeaders();
+      const response = await fetch(`${API_BASE_URL}/api/clients`, {
+        method: "GET",
+        headers
       });
-  };
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || `HTTP error! Status: ${response.status}`);
+      }
+      const res = await response.json();
+
+      if (res.error) {
+        throw new Error(res.message)
+      }
+      return res
+    } catch (error: any) {
+      console.error('Erro ao buscar avaliações posturais do cliente: ', error);
+      throw error;
+    }
+  }
   getClientById = (id: number): Promise<IClient> => {
-    const headers = {
-      "Content-type": "application/json",
-      // Authorization: `Bearer ${acessToken}`
-    };
-    return fetch(`${url}/api/client/${id}`, {
-      method: "GET",
+    const headers = getStandardHeaders();
+    return fetch(`${API_BASE_URL}/api/clients/${id}`, {
+      method: 'GET',
       headers,
     })
       .then((res) => res.json())
@@ -46,12 +40,9 @@ export class ClientService {
   };
 
   getClientBikes = (clientId: number) => {
-    const headers = {
-      "Content-Type": "application/json",
-      // Authorization: `Bearer ${acessToken}`,
-    };
-    return fetch(`${url}/api/clients/bikes/${clientId}`, {
-      method: "GET",
+    const headers = getStandardHeaders();
+    return fetch(`${API_BASE_URL}/api/clients/bikes/${clientId}`, {
+      method: 'GET',
       headers,
     })
       .then((res) => res.json())
@@ -63,13 +54,32 @@ export class ClientService {
       });
   };
 
+  getClientPostureEvaluations = async (clientId: number): Promise<IPostureEvaluation[]> => {
+    try {
+      const headers = getStandardHeaders();
+      const response = await fetch(`${API_BASE_URL}/api/clients/postureEvaluations/${clientId}`, {
+        method: "GET",
+        headers
+      })
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.message || `HTTP error! Status: ${response.status}`)
+      }
+      const res = await response.json();
+      if (res.error) {
+        throw new Error(res.message);
+      }
+      return res
+    } catch (error: any) {
+      console.error('Erro ao buscar avaliações posturais do cliente: ', error);
+      throw error;
+    }
+  }
+
   addClient = (body: IClientCreationPayload) => {
-    const headers = {
-      "Content-type": "application/json",
-      // Authorization: `Bearer ${acessToken}`,
-    };
-    return fetch(`${url}/api/clients/`, {
-      method: "POST",
+    const headers = getStandardHeaders();
+    return fetch(`${API_BASE_URL}/api/clients/`, {
+      method: 'POST',
       headers,
       body: JSON.stringify(body),
     })
@@ -83,12 +93,9 @@ export class ClientService {
   };
 
   patchClient = (id: number, body: Partial<IClient>): Promise<IClient> => {
-    const headers = {
-      "Content-type": "application/json",
-      // Authorization: `Bearer ${acessToken}`,
-    };
-    return fetch(`${url}/api/clients/${id}`, {
-      method: "PATCH",
+    const headers = getStandardHeaders();
+    return fetch(`${API_BASE_URL}/api/clients/${id}`, {
+      method: 'PATCH',
       headers,
       body: JSON.stringify(body),
     })
@@ -101,7 +108,28 @@ export class ClientService {
       });
   };
 
-  deleteClient = () => {};
+  deleteClient = async (id: number): Promise<object> => {
+    try {
+      const headers = getStandardHeaders();
+      const response = await fetch(`${API_BASE_URL}/api/clients/${id}`, {
+        method: "DELETE",
+        headers
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || `HTTP error! Status: ${response.status}`)
+      };
+      const res = await response.json()
+      if (res.error) {
+        throw new Error(res.message);
+      }
+      return res
+    } catch (error: any) {
+      console.error('Erro ao buscar clientes: ', error);
+      throw error;
+    }
+
+  };
 }
 
 export default new ClientService();

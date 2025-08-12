@@ -33,11 +33,29 @@ export class ClientController {
     } catch (error: any) {
       console.error("Erro no ClientController.getClientBikes", error);
       res.status(500).json({
-        message: "Erro  no sevidor ao buscar os clientes",
+        message: "Erro  no sevidor ao buscar bicicletas dos clientes",
         code: "INTERNAL_SERVER_ERROR",
       });
     }
   };
+
+  getClientPostures = async (req: Request, res: Response) => {
+    try {
+      const clientId = Number(req.params.id);
+      const response = await ClientService.getClientPostureEvaluations(clientId);
+      if (!response) {
+        res.status(404).json({ message: "Não foi possível encontrar as avaliações posturais do cliente" })
+      }
+      res.status(200).json(response)
+
+    } catch (error: any) {
+      console.error("Erro no ClientController.getClientPosturesEvaluations", error);
+      res.status(500).json({
+        message: "Erro  no sevidor ao buscar avaliações posturais do cliente",
+        code: "INTERNAL_SERVER_ERROR",
+      });
+    }
+  }
 
   getClientByEmail = async (req: Request, res: Response): Promise<void> => {
     try {

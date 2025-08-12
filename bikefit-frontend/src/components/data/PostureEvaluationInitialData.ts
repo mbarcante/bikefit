@@ -1,0 +1,91 @@
+import { IPostureEvaluation, IPostureEvaluationCreation } from "../../types";
+
+export const postureEvaluationInitialData: IPostureEvaluation = {
+    // --- Informações Principais ---
+    userId: 0,
+    clientId: 0,
+    evaluationDate: new Date(),
+    additionalInformation: '',
+
+    // --- Ângulos Posturais ---
+    leftQAngle: null,
+    rightQAngle: null,
+    leftHipFlexion: null,
+    rightHipFlexion: null,
+    leftForefootRotation: null,
+    rightForefootRotation: null,
+    leftRearfootRotation: null,
+    rightRearfootRotation: null,
+
+    // --- Antropometria ---
+    leftLegLength: null,
+    rightLegLength: null,
+    weberBarstowTest: '',
+    allisGaleazziTest: '',
+    inseam: null,
+    trunkAnthropometry: null,
+    upperLimbAnthropometry: null,
+    shoulderAnthropometry: null,
+    heightAnthropometry: null,
+    ischialTuberosityWidth: null,
+    headCircumferenceAnthropometry: null,
+    weightAnthropometry: null,
+
+    // --- Perimetria ---
+    leftThighCircumference8cm: null,
+    leftThighCircumference15cm: null,
+    leftThighCircumference23cm: null,
+    rightThighCircumference8cm: null,
+    rightThighCircumference15cm: null,
+    rightThighCircumference23cm: null,
+    leftCalfCircumference15cm: null,
+    rightCalfCircumference15cm: null,
+
+    // --- Análises Visuais Posturais ---
+    headAnteriorView: '',
+    headProfileView: '',
+    cervicalProfileView: '',
+    shoulderAnteriorView: '',
+    shoulderProfileView: '',
+    elbowProfileView: '',
+    thoracicProfileView: '',
+    lumbarProfileView: '',
+    pelvisAnteriorView: '',
+    pelvisProfileView: '',
+    kneeAnteriorView: '',
+    kneeProfileView: '',
+    ankleProfileView: '',
+    footProfileView: '',
+    thoracicHumpPosteriorView: '',
+    breathingPattern: '',
+    diaphragmObservation: '',
+
+    // --- Medidas do Pé ---
+    shoeSize: null,
+    leftFootSize: null,
+    rightFootSize: null,
+
+    // --- Testes Especiais ---
+    stiborTestBefore: null,
+    stiborTestAfter: null,
+    schoberTestBefore: null,
+    schoberTestAfter: null,
+    thomasTestRight: null,
+    thomasTestLeft: null,
+    elyTestRight: null,
+    elyTestLeft: null,
+    plankTestResult: '',
+    clarkeTestRight: null,
+    clarkeTestLeft: null,
+    adamsTestPositive: null,
+    adamsTestNegative: null,
+    nobleTestRight: null,
+    nobleTestLeft: null,
+    bonnetTestRight: null,
+    bonnetTestLeft: null,
+    lasegueTestLeft: null,
+    lasegueTestRight: null,
+    threeFingerToGroundTest: null,
+    singleLegSquatLeft: null,
+    singleLegSquatRight: null,
+};

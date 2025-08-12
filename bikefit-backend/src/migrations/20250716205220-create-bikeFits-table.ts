@@ -1,38 +1,40 @@
-import { DataTypes, QueryInterface } from "sequelize";
+import { DataTypes, QueryInterface } from 'sequelize';
 
 module.exports = {
   up: async (queryInterface: QueryInterface, Sequelize: any) => {
-    await queryInterface.createTable("BikeFits", {
+    await queryInterface.createTable('BikeFits', {
       Id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      UsuárioId: {
+      UsuarioId: {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-          model: "Usuarios",
-          key: "Id",
+          model: 'Usuarios',
+          key: 'Id',
         },
       },
       AvaliacaoPosturalId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: "AvaliacoesPosturais",
-          key: "Id",
+          model: 'AvaliacoesPosturais',
+          key: 'Id',
         },
-        onDelete: "CASCADE",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       BikeId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: "Bikes",
-          key: "Id",
+          model: 'Bikes',
+          key: 'Id',
         },
-        onDelete: "CASCADE",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       ObjetivoCurtoPrazo: {
         type: DataTypes.TEXT,
@@ -315,20 +317,20 @@ module.exports = {
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      DtCadastro: {
+      createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW,
+        field: 'DtCadastro',
       },
-      DtAtualizacao: {
+      updatedAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW,
+        field: 'DtAtualizacao',
       },
     });
   },
 
   down: async (queryInterface: QueryInterface, Sequelize: any) => {
-    await queryInterface.dropTable("BikeFits");
+    await queryInterface.dropTable('BikeFits');
   },
 };

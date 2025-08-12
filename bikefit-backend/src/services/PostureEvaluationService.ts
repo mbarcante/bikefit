@@ -6,9 +6,7 @@ export class PostureEvaluationService {
     const postureEvaluations = await PostureEvaluation.findAll();
     return postureEvaluations;
   }
-  public async getPostureEvaluationById(
-    id: number
-  ): Promise<PostureEvaluation> {
+  public async getPostureEvaluationById(id: number): Promise<PostureEvaluation> {
     const postureEvaluation = await PostureEvaluation.findByPk(id);
     if (postureEvaluation === null) {
       throw new Error("Não há Avaliação Postural que corresponda a esse id");

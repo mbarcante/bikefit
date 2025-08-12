@@ -1,11 +1,8 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "@/config/database";
-import { IBikeFit, IBikeFitCreationAttributes } from "@/interfaces/IBikeFit";
+import { DataTypes, Model } from 'sequelize';
+import sequelize from '@/config/database';
+import { IBikeFit, IBikeFitCreationAttributes } from '@/interfaces/IBikeFit';
 
-export class BikeFit
-  extends Model<IBikeFit, IBikeFitCreationAttributes>
-  implements IBikeFit
-{
+export class BikeFit extends Model<IBikeFit, IBikeFitCreationAttributes> implements IBikeFit {
   // Propriedades que correspondem à interface IBikeFit
   public id!: number;
   public postureAvaliationId!: number;
@@ -107,8 +104,8 @@ export class BikeFit
   public observationAfter?: string;
   public additionalInformation?: string;
 
-  public createdAt!: Date;
-  public updatedAt!: Date;
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 }
 
 BikeFit.init(
@@ -118,385 +115,383 @@ BikeFit.init(
       autoIncrement: true,
       primaryKey: true,
       allowNull: false,
-      field: "Id",
+      field: 'Id',
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      field: "UsuarioId",
+      field: 'UsuarioId',
     },
     postureAvaliationId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: "AvaliacaoPosturalId",
+      field: 'AvaliacaoPosturalId',
     },
     bikeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: "BikeId",
+      field: 'BikeId',
     },
     shortTermGoal: {
       type: DataTypes.TEXT,
       allowNull: true,
-      field: "ObjetivoCurtoPrazo",
+      field: 'ObjetivoCurtoPrazo',
     },
     longTermGoal: {
       type: DataTypes.TEXT,
       allowNull: true,
-      field: "ObjetivoLongoPrazo",
+      field: 'ObjetivoLongoPrazo',
     },
     stemHeightBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "MesaAlturaAntes",
+      field: 'MesaAlturaAntes',
     },
     stemHeightAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "MesaAlturaDepois",
+      field: 'MesaAlturaDepois',
     },
     stemLengthBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "MesaTamanhoAntes",
+      field: 'MesaTamanhoAntes',
     },
     stemLengthImageBefore: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "MesaTamanhoImagemAntes",
+      field: 'MesaTamanhoImagemAntes',
     },
     stemLengthAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "MesaTamanhoDepois",
+      field: 'MesaTamanhoDepois',
     },
     stemLengthImageAfter: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "MesaTamanhoImagemDepois",
+      field: 'MesaTamanhoImagemDepois',
     },
     stemAngleBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "MesaInclinacaoAntes",
+      field: 'MesaInclinacaoAntes',
     },
     stemAngleAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "MesaInclinacaoDepois",
+      field: 'MesaInclinacaoDepois',
     },
     saddleLengthBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "SelimComprimentoAntes",
+      field: 'SelimComprimentoAntes',
     },
     saddleLengthAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "SelimComprimentoDepois",
+      field: 'SelimComprimentoDepois',
     },
     saddleWidthBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "SelimLarguraAntes",
+      field: 'SelimLarguraAntes',
     },
     saddleWidthAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "SelimLarguraDepois",
+      field: 'SelimLarguraDepois',
     },
     saddleTiltBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "SelimInclinacaoAntes",
+      field: 'SelimInclinacaoAntes',
     },
     saddleTiltAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "SelimInclinacaoDepois",
+      field: 'SelimInclinacaoDepois',
     },
     handlebarWidthBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "GuidaoLarguraAntes",
+      field: 'GuidaoLarguraAntes',
     },
     handlebarWidthAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "GuidaoLarguraDepois",
+      field: 'GuidaoLarguraDepois',
     },
     handlebarRiseBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "GuidaoRiseAntes",
+      field: 'GuidaoRiseAntes',
     },
     handlebarRiseAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "GuidaoRiseDepois",
+      field: 'GuidaoRiseDepois',
     },
     handlebarReachBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "GuidaoReachAntes",
+      field: 'GuidaoReachAntes',
     },
     handlebarReachAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "GuidaoReachDepois",
+      field: 'GuidaoReachDepois',
     },
     handlebarDropBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "GuidaoDropAntes",
+      field: 'GuidaoDropAntes',
     },
     handlebarDropAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "GuidaoDropDepois",
+      field: 'GuidaoDropDepois',
     },
     seatpostLengthBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "CanotTamanhoAntes",
+      field: 'CanotTamanhoAntes',
     },
     seatpostLengthAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "CanotTamanhoDepois",
+      field: 'CanotTamanhoDepois',
     },
     seatpostOffsetBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "CanotOffsetAntes",
+      field: 'CanotOffsetAntes',
     },
     seatpostOffsetAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "CanotOffsetDepois",
+      field: 'CanotOffsetDepois',
     },
     trunkUpperLimbAngleBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloTroncoMembroSuperiorAntes",
+      field: 'AnguloTroncoMembroSuperiorAntes',
     },
     trunkUpperLimbAngleImageBefore: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloTroncoMembroSuperiorImagemAntes",
+      field: 'AnguloTroncoMembroSuperiorImagemAntes',
     },
     trunkUpperLimbAngleAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloTroncoMembroSuperiorDepois",
+      field: 'AnguloTroncoMembroSuperiorDepois',
     },
     trunkUpperLimbAngleImageAfter: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloTroncoMembroSuperiorImagemDepois",
+      field: 'AnguloTroncoMembroSuperiorImagemDepois',
     },
     trunkFlexionAngleBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloFlexaoTroncoAntes",
+      field: 'AnguloFlexaoTroncoAntes',
     },
     trunkFlexionAngleImageBefore: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloFlexaoTroncoImagemAntes",
+      field: 'AnguloFlexaoTroncoImagemAntes',
     },
     trunkFlexionAngleAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloFlexaoTroncoDepois",
+      field: 'AnguloFlexaoTroncoDepois',
     },
     trunkFlexionAngleImageAfter: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloFlexaoTroncoImagemDepois",
+      field: 'AnguloFlexaoTroncoImagemDepois',
     },
     elbowFlexionAngleBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloFlexaoCotoveloAntes",
+      field: 'AnguloFlexaoCotoveloAntes',
     },
     elbowFlexionAngleImageBefore: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloFlexaoCotoveloImagemAntes",
+      field: 'AnguloFlexaoCotoveloImagemAntes',
     },
     elbowFlexionAngleAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloFlexaoCotoveloDepois",
+      field: 'AnguloFlexaoCotoveloDepois',
     },
     elbowFlexionAngleImageAfter: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloFlexaoCotoveloImagemDepois",
+      field: 'AnguloFlexaoCotoveloImagemDepois',
     },
     shoulderElbowRecoilAngleBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloRecuoOmbroCotoveloAntes",
+      field: 'AnguloRecuoOmbroCotoveloAntes',
     },
     shoulderElbowRecoilAngleImageBefore: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloRecuoOmbroCotoveloImagemAntes",
+      field: 'AnguloRecuoOmbroCotoveloImagemAntes',
     },
     shoulderElbowRecoilAngleAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloRecuoOmbroCotoveloDepois",
+      field: 'AnguloRecuoOmbroCotoveloDepois',
     },
     shoulderElbowRecoilAngleImageAfter: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloRecuoOmbroCotoveloImagemDepois",
+      field: 'AnguloRecuoOmbroCotoveloImagemDepois',
     },
     kneeFlexionAngleBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloFlexaoJoelhoAntes",
+      field: 'AnguloFlexaoJoelhoAntes',
     },
     kneeFlexionAngleImageBefore: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloFlexaoJoelhoImagemAntes",
+      field: 'AnguloFlexaoJoelhoImagemAntes',
     },
     kneeFlexionAngleAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloFlexaoJoelhoDepois",
+      field: 'AnguloFlexaoJoelhoDepois',
     },
     kneeFlexionAngleImageAfter: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloFlexaoJoelhoImagemDepois",
+      field: 'AnguloFlexaoJoelhoImagemDepois',
     },
     plantarFlexionAngleBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloFlexaoPlantaAntes",
+      field: 'AnguloFlexaoPlantaAntes',
     },
     plantarFlexionAngleImageBefore: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloFlexaoPlantaImagemAntes",
+      field: 'AnguloFlexaoPlantaImagemAntes',
     },
     plantarFlexionAngleAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloFlexaoPlantaDepois",
+      field: 'AnguloFlexaoPlantaDepois',
     },
     plantarFlexionAngleImageAfter: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloFlexaoPlantaImagemDepois",
+      field: 'AnguloFlexaoPlantaImagemDepois',
     },
     dorsiflexionAngleBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloDorsiFlexaoAntes",
+      field: 'AnguloDorsiFlexaoAntes',
     },
     dorsiflexionAngleImageBefore: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloDorsiFlexaoImagemAntes",
+      field: 'AnguloDorsiFlexaoImagemAntes',
     },
     dorsiflexionAngleAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "AnguloDorsiFlexaoDepois",
+      field: 'AnguloDorsiFlexaoDepois',
     },
     dorsiflexionAngleImageAfter: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "AnguloDorsiFlexaoImagemDepois",
+      field: 'AnguloDorsiFlexaoImagemDepois',
     },
     videoBefore: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "VideoAntes",
+      field: 'VideoAntes',
     },
     videoAfter: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "VideoDepois",
+      field: 'VideoDepois',
     },
     kopsBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "KopsAntes",
+      field: 'KopsAntes',
     },
     kopsImageBefore: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "KopsImagemAntes",
+      field: 'KopsImagemAntes',
     },
     kopsAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "KopsDepois",
+      field: 'KopsDepois',
     },
     kopsImageAfter: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      field: "KopsImagemDepois",
+      field: 'KopsImagemDepois',
     },
     crankArmLengthBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "PeDeVelaTamanhoAntes",
+      field: 'PeDeVelaTamanhoAntes',
     },
     crankArmLengthAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "PeDeVelaTamanhoDepois",
+      field: 'PeDeVelaTamanhoDepois',
     },
     crankArmQFactorBefore: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "PeDeVelaQFactorAntes",
+      field: 'PeDeVelaQFactorAntes',
     },
     crankArmQFactorAfter: {
       type: DataTypes.DECIMAL(18, 2),
       allowNull: true,
-      field: "PeDeVelaQFactorDepois",
+      field: 'PeDeVelaQFactorDepois',
     },
     observationBefore: {
       type: DataTypes.TEXT,
       allowNull: true,
-      field: "ObservacaoAntes",
+      field: 'ObservacaoAntes',
     },
     observationAfter: {
       type: DataTypes.TEXT,
       allowNull: true,
-      field: "ObservacaoDepois",
+      field: 'ObservacaoDepois',
     },
     additionalInformation: {
       type: DataTypes.TEXT,
       allowNull: true,
-      field: "InformacoesAdicionais",
+      field: 'InformacoesAdicionais',
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false, // Conforme migração
-      field: "DtCadastro",
+      field: 'DtCadastro',
     },
     updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false, // Conforme migração
-      field: "DtAtualizacao",
+      field: 'DtAtualizacao',
     },
   },
   {
     sequelize,
-    tableName: "BikeFits",
-    modelName: "BikeFit",
+    tableName: 'BikeFits',
+    modelName: 'BikeFit',
     timestamps: true,
-    createdAt: "DtCadastro",
-    updatedAt: "DtAtualizacao",
-  }
+    createdAt: 'DtCadastro',
+    updatedAt: 'DtAtualizacao',
+  },
 );

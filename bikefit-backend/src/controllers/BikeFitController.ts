@@ -29,7 +29,6 @@ export class BikeFitController {
     try {
       const bikeId = Number(req.params.id);
       const response = await BikeFitService.getBikeFitsByBikeId(bikeId);
-      console.log('usou o service', response);
       if (!response) {
         res.status(404).json({ message: 'Não foi encontrado o BikeFit para este id' });
       }

@@ -7,3 +7,5 @@ export { default as ArticularAnglesService } from "./ArticularAnglesService";
 export { default as RimService } from "./RimService";
 export { default as PostureEvaluationService } from "./PostureEvaluationService";
 export { default as FrameService } from "./FrameService";
+export { default as AuthService } from "./AuthService"
+export { default as AuthManagerService } from "./AuthManagerService"

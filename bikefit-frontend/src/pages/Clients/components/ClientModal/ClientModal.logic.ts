@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { ClientService } from "../../../../services";
-import { FormState, IClient, IClientCreationPayload } from "../../../../types";
+import { FormState, IClient, IClientCreationPayload, IPaginatedClientResponse } from "../../../../types";
 
 interface ClientModalProps {
     item?: IClient;
-    getClients: () => Promise<void>;
+    getClients: (limit?: number, offset?: number) => Promise<IPaginatedClientResponse>;
 }
 
 

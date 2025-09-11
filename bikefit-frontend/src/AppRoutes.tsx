@@ -6,6 +6,8 @@ import ClientDetail from './pages/ClientDetail/ClientDetail';
 import BikeFitListPage from './pages/ClientDetail/components/BikeFitCard/BikeFitCard';
 import BikeFitFormPage from './pages/BikeFit/BikeFitFormPage/BikeFitFormPage';
 import Layout from './Layout';
+import PostureEvaluationFormPage from './pages/PostureEvaluationFormPage/PostureEvaluationFormPage';
+import Users from './pages/Users/Users';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -17,6 +19,9 @@ const AppRoutes: React.FC = () => {
         <Route path="cliente/bike/:id/bikefit/new" element={<BikeFitFormPage />} />
         <Route path="cliente/bike/bikefit/:id" element={<BikeFitFormPage />} />
         <Route path="cliente/:id/bikefits" element={<BikeFitListPage />} />
+        <Route path="cliente/:id/avaliacao-postural/new" element={<PostureEvaluationFormPage />} />
+        <Route path="cliente/:id/avaliacao-postural/:id" element={<PostureEvaluationFormPage />} />
+        <Route path="usuarios" element={<Users />} />
       </Route>
 
       <Route path="*" element={<h1>404 - Página não encontrada</h1>} />

@@ -2,14 +2,9 @@ import { Request, Response } from "express";
 import { ClientService } from "@/services";
 
 export class ClientController {
-  getAllClients = async (_req: Request, res: Response): Promise<void> => {
+  getAllClients = async (req: Request, res: Response): Promise<void> => {
     try {
-      const response = await ClientService.getAllClients();
-      if (!response) {
-        res
-          .status(404)
-          .json({ messaage: "Não foi possível encontrar os clientes" });
-      }
+      const response = await ClientService.getAllClients(Number(req.query.limit), Number(req.query.offset));
       res.status(200).json(response);
     } catch (error: any) {
       console.error("Erro no ClientController.getAllClients", error);
@@ -106,6 +101,18 @@ export class ClientController {
         message: "Erro servidor ao buscar o cliente.",
         code: "INTERNAL_SERVER_ERROR",
       });
+    }
+  };
+
+  getSearchClient = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const searchTerm = req.params.search as string;
+      const response = await ClientService.searchClient(searchTerm);
+      res.status(200).json(response);
+    } catch (error: any) {
+      res
+        .status(500)
+        .json({ message: "Internal Server Error: ", error: error.message });
     }
   };
 

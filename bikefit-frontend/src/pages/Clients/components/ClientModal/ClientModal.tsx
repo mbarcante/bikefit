@@ -1,21 +1,17 @@
-import { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { IClient, IClientCreationPayload } from '../../../../types';
-import { ClientService } from '../../../../services';
+import { IClient, IPaginatedClientResponse } from '../../../../types';
 import GenericFormModal from '../../../../components/Forms/GenericFormModal';
-import { FormState } from '../../../../types';
 import { clientFields } from '../../../../components/Forms/clientFields';
 import Icon from '../../../../utils/Icons';
 import useClientModal from './ClientModal.logic';
 
 interface ClientModalProps {
   item?: IClient;
-  getClients: () => Promise<void>;
+  getClients: (limit?: number, offset?: number) => Promise<IPaginatedClientResponse>;
 }
 
 const ClientModal = ({ item, getClients }: ClientModalProps) => {
   const { handleClose, handleFormSubmit, handleShow, initialData, show, isUpdating, isSaving } = useClientModal({ item, getClients });
-
 
   return (
     <>

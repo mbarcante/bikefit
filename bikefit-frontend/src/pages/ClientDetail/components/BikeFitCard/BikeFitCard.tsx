@@ -1,8 +1,7 @@
 import React from 'react';
-import { Accordion, Button, Card, Col, Row } from 'react-bootstrap';
+import { Button, Card, Col, Row } from 'react-bootstrap';
 import { useBikeFits } from '../../../../context/BikeFitContext';
 import { useNavigate } from 'react-router-dom';
-import PostureEvaluation from '../../../../services/postureEvaluation';
 import PostureEvaluationView from './components/PostureEvaluationView';
 
 const BikeFitCard: React.FC = () => {
@@ -32,16 +31,8 @@ const BikeFitCard: React.FC = () => {
     <Card className="my-3" key={bikefit.id}>
       <Card.Header className="d-flex justify-content-between align-items-center">
         <h4>Detalhes do BikeFit - ID: {bikefit.id}</h4>
-        <div>
-          <Button variant="warning" size="sm" className="mx-2" onClick={() => navigate(`/cliente/bike/bikefit/${bikefit.bikeId}`, { state: bikefit })}>
-            Editar
-          </Button>
-          <Button variant="danger" className="mx-2" size="sm">
-            Excluir
-          </Button>
-        </div>
       </Card.Header>
-      <Card.Body>
+      <Card.Body as='div'>
         <h5 className="mb-3">Informações Principais</h5>
         <Row>
           <Col md={6}>
@@ -157,6 +148,14 @@ const BikeFitCard: React.FC = () => {
         <Row>
           <PostureEvaluationView id={Number(bikefit.postureAvaliationId)} />
         </Row>
+        <div className="d-flex justify-content-end gap-2 mt-3">
+          <Button variant="warning" size="sm" className="mx-2" onClick={() => navigate(`/cliente/bike/bikefit/${bikefit.bikeId}`, { state: bikefit })}>
+            Editar
+          </Button>
+          <Button variant="danger" className="mx-2" size="sm">
+            Excluir
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );

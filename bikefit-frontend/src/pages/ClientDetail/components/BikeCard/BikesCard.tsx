@@ -45,7 +45,7 @@ const BikesCard = ({ client }: BikesCardProps) => {
           <i className="bi bi-plus-circle" /> Adicionar Bicicleta
         </Button>
       </Card.Header>
-      <Card.Body>
+      <Card.Body as='div'>
         {loading && <p>Carregando bicicletas...</p>}
         {error && <p className="text-danger">{error}</p>}
         {!loading && !error && bikes.length === 0 && <p>Nenhuma bicicleta encontrada para este cliente.</p>}

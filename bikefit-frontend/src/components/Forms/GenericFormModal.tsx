@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import GenericForm from './GenericForm'; // Importa o novo componente
-import { FormField, FormState } from '../../types';
+import GenericForm from './GenericForm';
+import { FormField, FormState } from 'src/types';
 
 interface GenericFormModalProps {
   show: boolean;

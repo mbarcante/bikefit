@@ -1,4 +1,4 @@
-import { IPostureEvaluation, IPostureEvaluationCreation } from "../../types";
+import { IPostureEvaluation, IPostureEvaluationCreation } from "@/types";
 
 export const postureEvaluationInitialData: IPostureEvaluation = {
     // --- Informações Principais ---

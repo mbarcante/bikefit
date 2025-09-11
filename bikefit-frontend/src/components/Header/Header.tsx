@@ -3,18 +3,16 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 
 const Header: React.FC = () => {
     return (
-        <Navbar bg="dark" variant="dark" expand="lg">
-            <Container>
-                <Navbar.Brand href="#home">BikeFit App</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto">
-                        <Nav.Link href="#clients">Clientes</Nav.Link>
-                        <Nav.Link href="#evaluations">Avaliações</Nav.Link>
-                        <Nav.Link href="#bikes">Bicicletas</Nav.Link>
-                        <Nav.Link href="#settings">Configurações</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
+        <Navbar bg="dark" variant="dark">
+            {/* O container com d-flex e justify-content-between \\u00e9 o elemento pai */}
+            <Container fluid className="d-flex justify-content-between">
+                <Navbar.Brand href="/clientes" className="mx-5">BikeFit App</Navbar.Brand>
+                <Nav className="mx-5">
+                    <Nav.Link href="/clientes">Clientes</Nav.Link>
+                    <Nav.Link href="/usuarios">Usuários </Nav.Link>
+                    <Nav.Link href="#bikes">Bicicletas</Nav.Link>
+                    <Nav.Link href="#settings">Configurações</Nav.Link>
+                </Nav>
             </Container>
         </Navbar>
     );

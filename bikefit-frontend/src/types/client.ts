@@ -13,10 +13,21 @@ export interface IClient {
   updatedAt: string;
 }
 
+export interface IPaginatedClientResponse {
+  data: IClient[];
+  totalReg: number;
+  limit: number;
+  paginate: number;
+}
+
 export type IClientCreationPayload = Omit<
   IClient,
   "id" | "createdAt" | "updatedAt"
 >;
+
+export type IClientUpdatePayload = Partial<IClientCreationPayload> & {
+  id: number;
+};
 
 export interface ClientService {
   addClient: (clientData: IClientCreationPayload) => Promise<any>;

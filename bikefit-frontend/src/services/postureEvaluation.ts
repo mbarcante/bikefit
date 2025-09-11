@@ -1,5 +1,5 @@
 import { API_BASE_URL, getStandardHeaders } from "./utils"
-import { IPostureEvaluation, IPostureEvaluationCreation } from "../types"
+import { IPostureEvaluation, IPostureEvaluationCreation } from "src/types"
 
 export class PostureEvaluationService {
     getPostureEvaluationById = async (id: number): Promise<IPostureEvaluation> => {
@@ -46,7 +46,7 @@ export class PostureEvaluationService {
             throw error;
         }
     };
-    patchPostureEvaluation = async (id: number, body: IPostureEvaluationCreation): Promise<IPostureEvaluation> => {
+    patchPostureEvaluation = async (id: number, body: Partial<IPostureEvaluation>): Promise<IPostureEvaluation> => {
         try {
             const headers = getStandardHeaders();
             const response = await fetch(`${API_BASE_URL}/api/postureEvaluation/${id}`, {
@@ -69,5 +69,6 @@ export class PostureEvaluationService {
         }
     }
 }
+const postureEvaluationService = new PostureEvaluationService();
 
-export default new PostureEvaluationService()
+export default postureEvaluationService;

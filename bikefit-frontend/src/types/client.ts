@@ -17,11 +17,3 @@ export type IClientCreationPayload = Omit<
   IClient,
   "id" | "createdAt" | "updatedAt"
 >;
-
-export interface ClientService {
-  addClient: (clientData: IClientCreationPayload) => Promise<any>;
-  updateClient: (
-    id: number,
-    clientData: IClientCreationPayload
-  ) => Promise<any>;
-}

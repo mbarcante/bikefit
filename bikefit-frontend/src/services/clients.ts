@@ -1,8 +1,9 @@
-import { IClient, IClientCreationPayload, IPostureEvaluation } from '../types';
+import { IClient, IClientCreationPayload } from '@/types/client';
+import { IPostureEvaluation } from '@/types/postureEvaluation';
 import { API_BASE_URL, getStandardHeaders } from './utils';
 
 export class ClientService {
-  getAllClients = async (): Promise<IClient[]> => {
+  static async getAllClients(): Promise<IClient[]> {
     try {
       const headers = getStandardHeaders();
       const response = await fetch(`${API_BASE_URL}/api/clients`, {
@@ -20,41 +21,48 @@ export class ClientService {
       }
       return res
     } catch (error: any) {
-      console.error('Erro ao buscar avaliações posturais do cliente: ', error);
+      console.error('Erro ao buscar clientes: ', error);
       throw error;
     }
   }
-  getClientById = (id: number): Promise<IClient> => {
+
+  static async getClientById(id: number): Promise<IClient> {
     const headers = getStandardHeaders();
-    return fetch(`${API_BASE_URL}/api/clients/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/clients/${id}`, {
       method: 'GET',
       headers,
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.error) {
-          throw new Error(res.message);
-        }
-        return res;
-      });
-  };
+    });
+    
+    if (!response.ok) {
+      throw new Error('Cliente não encontrado');
+    }
+    
+    const res = await response.json();
+    if (res.error) {
+      throw new Error(res.message);
+    }
+    return res;
+  }
 
-  getClientBikes = (clientId: number) => {
+  static async getClientBikes(clientId: number) {
     const headers = getStandardHeaders();
-    return fetch(`${API_BASE_URL}/api/clients/bikes/${clientId}`, {
+    const response = await fetch(`${API_BASE_URL}/api/clients/bikes/${clientId}`, {
       method: 'GET',
       headers,
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.error) {
-          throw new Error(res.message);
-        }
-        return res;
-      });
-  };
+    });
+    
+    if (!response.ok) {
+      throw new Error('Erro ao buscar bicicletas');
+    }
+    
+    const res = await response.json();
+    if (res.error) {
+      throw new Error(res.message);
+    }
+    return res;
+  }
 
-  getClientPostureEvaluations = async (clientId: number): Promise<IPostureEvaluation[]> => {
+  static async getClientPostureEvaluations(clientId: number): Promise<IPostureEvaluation[]> {
     try {
       const headers = getStandardHeaders();
       const response = await fetch(`${API_BASE_URL}/api/clients/postureEvaluations/${clientId}`, {
@@ -76,39 +84,45 @@ export class ClientService {
     }
   }
 
-  addClient = (body: IClientCreationPayload) => {
+  static async addClient(body: IClientCreationPayload): Promise<IClient> {
     const headers = getStandardHeaders();
-    return fetch(`${API_BASE_URL}/api/clients/`, {
+    const response = await fetch(`${API_BASE_URL}/api/clients/`, {
       method: 'POST',
       headers,
       body: JSON.stringify(body),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.error) {
-          throw new Error(res.message);
-        }
-        return res;
-      });
-  };
+    });
+    
+    if (!response.ok) {
+      throw new Error('Erro ao criar cliente');
+    }
+    
+    const res = await response.json();
+    if (res.error) {
+      throw new Error(res.message);
+    }
+    return res;
+  }
 
-  patchClient = (id: number, body: Partial<IClient>): Promise<IClient> => {
+  static async patchClient(id: number, body: Partial<IClient>): Promise<IClient> {
     const headers = getStandardHeaders();
-    return fetch(`${API_BASE_URL}/api/clients/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/clients/${id}`, {
       method: 'PATCH',
       headers,
       body: JSON.stringify(body),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.error) {
-          throw new Error(res.message);
-        }
-        return res;
-      });
-  };
+    });
+    
+    if (!response.ok) {
+      throw new Error('Erro ao atualizar cliente');
+    }
+    
+    const res = await response.json();
+    if (res.error) {
+      throw new Error(res.message);
+    }
+    return res;
+  }
 
-  deleteClient = async (id: number): Promise<object> => {
+  static async deleteClient(id: number): Promise<void> {
     try {
       const headers = getStandardHeaders();
       const response = await fetch(`${API_BASE_URL}/api/clients/${id}`, {
@@ -123,13 +137,9 @@ export class ClientService {
       if (res.error) {
         throw new Error(res.message);
       }
-      return res
     } catch (error: any) {
-      console.error('Erro ao buscar clientes: ', error);
+      console.error('Erro ao excluir cliente: ', error);
       throw error;
     }
-
-  };
+  }
 }
-
-export default new ClientService();

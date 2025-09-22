@@ -1,7 +1,9 @@
 export const API_BASE_URL =
-  process.env.REACT_APP_API_URL || "http://localhost:3001";
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 export const getAuthToken = (): string | null => {
+  if (typeof window === 'undefined') return null;
+  
   const tokens = sessionStorage.getItem("session");
   if (!tokens) return null;
   try {
@@ -18,7 +20,7 @@ export const getStandardHeaders = (): HeadersInit => {
     "Content-type": "application/json",
   };
 
-  const token = getAuthToken(); // Pega o token
+  const token = getAuthToken();
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
   }

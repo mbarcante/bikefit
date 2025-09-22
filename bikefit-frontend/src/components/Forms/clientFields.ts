@@ -1,4 +1,4 @@
-import { FormField } from '../../types';
+import { FormField } from 'src/types';
 
 export const clientFields: FormField[] = [
   { name: 'name', label: 'Nome', type: 'text', placeholder: 'Nome completo', required: true },

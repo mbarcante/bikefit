@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import { FormState, IBikeFit, IBikeFitCreationPayload } from '../../../types';
-import { BikeFitService } from '../../../services';
+import { FormState, IBikeFit, IBikeFitCreationPayload } from 'src/types';
+import { BikeFitService } from 'src/services';
 
 const useBikeFitFormPage = (item?: IBikeFit, bikeIdFromUrl?: string) => {
     const [isSaving, setIsSaving] = useState<boolean>(false);

@@ -1,11 +1,15 @@
-import { IClient, IClientCreationPayload, IPostureEvaluation } from '../types';
+import { IClient, IClientCreationPayload, IPostureEvaluation, IPaginatedClientResponse } from 'src/types';
 import { API_BASE_URL, getStandardHeaders } from './utils';
 
 export class ClientService {
-  getAllClients = async (): Promise<IClient[]> => {
+  getAllClients = async (limit: number = 2, offset: number = 0): Promise<IPaginatedClientResponse> => {
     try {
+      const params = new URLSearchParams({
+        limit: limit.toString(),
+        offset: offset.toString()
+      });
       const headers = getStandardHeaders();
-      const response = await fetch(`${API_BASE_URL}/api/clients`, {
+      const response = await fetch(`${API_BASE_URL}/api/clients?${params.toString()}`, {
         method: "GET",
         headers
       });
@@ -132,4 +136,6 @@ export class ClientService {
   };
 }
 
-export default new ClientService();
+const clientService = new ClientService();
+
+export default clientService;

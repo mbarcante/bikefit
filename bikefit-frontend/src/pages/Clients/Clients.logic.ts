@@ -1,15 +1,23 @@
 import { useCallback, useState } from "react";
 import { ClientService } from "../../services";
-import { IClient } from "../../types";
+import { IPaginatedClientResponse } from "src/types";
 
 const useClients = () => {
-    const [clients, setClients] = useState<IClient[]>([]);
-    const getClients = useCallback(async () => {
+    const [clients, setClients] = useState<IPaginatedClientResponse>();
+
+    const getClients = useCallback(async (limit?: number, offset?: number) => {
         try {
-            const clientsList = await ClientService.getAllClients();
-            setClients(clientsList);
+            const clientsList = await ClientService.getAllClients(limit, offset);
+            setClients(clientsList)
+            return clientsList;
         } catch (error) {
             console.error('Erro ao buscar clientes:', error);
+            return {
+                data: [],
+                totalReg: 0,
+                limit: limit || 0,
+                paginate: 0,
+            };
         }
     }, []);
 
@@ -19,7 +27,6 @@ const useClients = () => {
             await getClients();
         } catch (error) {
             console.error('Ocorreu um erro na função deleteClient:', error);
-            // Você pode querer exibir uma mensagem de erro para o usuário aqui.
         }
     }
     return { getClients, deleteClient, clients }

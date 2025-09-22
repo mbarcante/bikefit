@@ -5,6 +5,7 @@ import { IPostureEvaluation } from '../../../../../types';
 
 interface PostureEvaluationAccordionItemProps {
     postureEvaluation: IPostureEvaluation;
+    client: number
 }
 
 // Helper function para renderizar campos de forma limpa
@@ -23,7 +24,7 @@ const renderField = (label: string, value: any, unit?: string) => {
     );
 };
 
-const PEAccordion: React.FC<PostureEvaluationAccordionItemProps> = ({ postureEvaluation }) => {
+const PEAccordion: React.FC<PostureEvaluationAccordionItemProps> = ({ postureEvaluation, client }) => {
     const navigate = useNavigate();
 
     return (
@@ -33,14 +34,6 @@ const PEAccordion: React.FC<PostureEvaluationAccordionItemProps> = ({ postureEva
                     <h6 className="mb-0">
                         Avaliação Postural - ID: {postureEvaluation.id} ({postureEvaluation.evaluationDate ? new Date(postureEvaluation.evaluationDate).toLocaleDateString() : 'N/A'})
                     </h6>
-                    <div className="d-flex gap-2">
-                        <Button variant="warning" size="sm">
-                            <i className="bi bi-pencil-square" />
-                        </Button>
-                        <Button variant="danger" size="sm">
-                            <i className="bi bi-trash" />
-                        </Button>
-                    </div>
                 </div>
             </Accordion.Header>
 
@@ -157,7 +150,7 @@ const PEAccordion: React.FC<PostureEvaluationAccordionItemProps> = ({ postureEva
 
                 {/* Linha de baixo: Botões de ação */}
                 <div className="d-flex justify-content-end gap-2 mt-3">
-                    <Button variant="warning" size="sm">
+                    <Button variant="warning" size="sm" onClick={() => navigate(`/cliente/${client}/avaliacao-postural/${postureEvaluation.id}`, { state: postureEvaluation })}>
                         Editar
                     </Button>
                     <Button variant="danger" size="sm">

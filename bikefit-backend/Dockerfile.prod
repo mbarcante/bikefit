@@ -1,40 +1,23 @@
-# -- STAGE 1: BUILD --
-# Este é o primeiro estágio. Ele constrói a aplicação e instala as dependências.
-FROM node:24-alpine AS builder
+FROM node:22-alpine AS builder
 
-# Define o diretório de trabalho no container.
 WORKDIR /app
 
-# Copia os arquivos de configuração do projeto.
 COPY package*.json ./
 COPY tsconfig.json ./
 
-# Instala todas as dependências do projeto, incluindo as de desenvolvimento,
-# pois o compilador TypeScript é uma dependência de desenvolvimento.
 RUN npm install
 
-# Copia o restante do código fonte do projeto.
 COPY . .
 
-# Compila o código TypeScript para JavaScript.
-# Este comando assume que você tem um script "build" no seu package.json.
 RUN npm run build
 
-# -- STAGE 2: PRODUCTION --
-# Este é o estágio final. Ele cria uma imagem de produção limpa e leve.
 FROM node:24-alpine
 
-# Define o diretório de trabalho novamente.
 WORKDIR /app
 
-# Copia apenas as dependências de produção e o código compilado da etapa de 'builder'.
-# Isso garante que a imagem final não contenha o código TypeScript original, nem as ferramentas de desenvolvimento.
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 
-# Expõe a porta que a aplicação de backend vai usar.
 EXPOSE 3001
 
-# Comando para iniciar a aplicação em produção.
-# A aplicação agora irá rodar o arquivo JavaScript compilado no diretório 'dist'.
 CMD ["node", "dist/index.js"]

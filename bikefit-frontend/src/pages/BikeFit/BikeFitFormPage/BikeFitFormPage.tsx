@@ -1,13 +1,13 @@
 import { Container } from "react-bootstrap"
 import useBikeFitFormPage from "./BikeFitFormPage.logic"
 import { useLocation, useParams } from "react-router-dom";
-import { IBikeFit } from "../../../types";
-import { bikeFitFields } from "../../../components/Forms/bikeFitFields";
-import GenericForm from "../../../components/Forms/GenericForm";
+import { IBikeFit } from "src/types";
+import { bikeFitFields } from "src/components/Forms/bikeFitFields";
+import GenericForm from "src/components/Forms/GenericForm";
 
-type LocationState = {
-    item?: IBikeFit;
-};
+// type LocationState = {
+//     item?: IBikeFit;
+// };
 const BikeFitFormPage = () => {
     const { id } = useParams()
     const location = useLocation();

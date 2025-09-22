@@ -1,9 +1,20 @@
 import { Client, Bike, PostureEvaluation } from "@/models";
 import { IClientCreationAttributes } from "@/interfaces";
+import { Paginator } from "@/lib/Pagination";
+import { Op } from "sequelize";
+
+interface PaginationResponse {
+  data: Client[];
+  paginate: number;
+  limit: number;
+  totalReg: number;
+}
+
 export class ClientService {
-  public async getAllClients(): Promise<Client[]> {
-    const clients = await Client.findAll();
-    return clients;
+  public async getAllClients(limit: number, offset: number): Promise<PaginationResponse> {
+    const paginate = new Paginator<Client>(limit, offset);
+    const paginatedClients = await paginate.getData(Client, {});
+    return paginatedClients;
   }
 
   public async getClientBikes(id: number): Promise<Bike[]> {
@@ -22,6 +33,25 @@ export class ClientService {
   public async getClientByEmail(clientEmail: string): Promise<Client | null> {
     const client = await Client.findOne({ where: { email: clientEmail } });
     return client;
+  }
+  public async searchClient(searchTerm: string): Promise<Client[] | null> {
+    const clients = await Client.findAll({
+      where: {
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: `%${searchTerm}%`
+            }
+          },
+          {
+            email: {
+              [Op.like]: `%${searchTerm}%`
+            }
+          }
+        ]
+      }
+    });
+    return clients.length > 0 ? clients : null;
   }
   public async createClient(data: IClientCreationAttributes): Promise<Client> {
     const newClient = await Client.create(data);

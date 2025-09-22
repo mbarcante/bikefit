@@ -1,9 +1,6 @@
 import { useCallback, useState } from "react"
 import { PostureEvaluationService } from "../../../../../services"
 import { IPostureEvaluation } from "../../../../../types"
-interface PEvaluationId {
-    id: number;
-}
 
 export const usePostureEvaluationView = (id: number) => {
     const [pEvaluation, setPEvaluation] = useState<IPostureEvaluation>()

@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { connectToDatabase } from '@/config/database';
 import cors from 'cors';
-import { UserRoutes, ClientRoutes, BikeRoutes, BikeFitsRoutes, PostureEvaluationRoutes } from '@/routers';
+import { UserRoutes, ClientRoutes, BikeRoutes, BikeFitsRoutes, PostureEvaluationRoutes, AuthRoutes, RimRoutes } from '@/routers';
 import '@/models';
 
 dotenv.config();
@@ -22,11 +22,14 @@ const PORT = process.env.PORT || 3001;
 app.get('/', (_req: Request, res: Response) => {
   res.send('Hello World');
 });
+app.use('/api/rims', RimRoutes);
+app.use('/api/auth', AuthRoutes)
 app.use('/api/bikes', BikeRoutes);
 app.use('/api/users', UserRoutes);
 app.use('/api/clients', ClientRoutes);
 app.use('/api/bikeFits', BikeFitsRoutes);
 app.use('/api/postureEvaluations', PostureEvaluationRoutes);
+
 const startServer = async () => {
   try {
     await connectToDatabase();

@@ -4,7 +4,7 @@ import PostureEvaluationsCard from './components/PostureEvaluationCard/PostureEv
 import { useParams } from 'react-router-dom';
 import { ClientService } from '../../services';
 import { useEffect, useState, useCallback } from 'react';
-import { IClient } from '../../types';
+import { IClient } from 'src/types';
 import BikeFitCard from './components/BikeFitCard/BikeFitCard';
 
 const ClientDetail = () => {

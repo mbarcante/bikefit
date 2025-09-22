@@ -1,24 +1,36 @@
 import { Card, Container, Table } from 'react-bootstrap';
-import { ClientService } from '../../services';
-import { useEffect, useState } from 'react';
-import ClientModal from './components/clientModal/ClientModal';
-import { IClient } from '../../types';
+import { useEffect } from 'react';
+import ClientModal from './components/ClientModal/ClientModal';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import Icon from '../../utils/Icons';
+import Icon from 'src/utils/Icons';
 import useClients from './Clients.logic';
+import usePaginator from 'src/components/Paginator/Paginator.logic';
+import Paginator from 'src/components/Paginator/Paginator';
+import TotalReg from 'src/components/TotalReg/TotalReg';
+import DropdownLimit from 'src/components/Paginator/DropdownLimit/DropdownLimit';
 
 const Clients = () => {
   const navigate = useNavigate();
   const { clients, getClients, deleteClient } = useClients();
+
+  const { changeLimit, changeOffset, fetchPagination, limit, nextPagination, offset, pages, pagination, previousPagination, start, end, totalReg } = usePaginator<any>({
+    fetchData: getClients
+  });
   useEffect(() => {
-    getClients();
-  }, [getClients]);
+    fetchPagination();
+  }, [fetchPagination]);
   return (
     <Container fluid>
       <Card>
-        <Card.Header className="d-flex justify-content-between">
-          <div>Clientes</div> <ClientModal getClients={getClients} />
+        <Card.Header className="d-flex justify-content-between align-items-center">
+          <div>
+            <h5>Clientes</h5>
+          </div>
+          <div>
+            <DropdownLimit limit={limit} changeLimit={changeLimit} />
+            <ClientModal getClients={getClients} />
+          </div>
         </Card.Header>
         <Card.Body>
           <Table striped bordered>
@@ -36,7 +48,7 @@ const Clients = () => {
               </tr>
             </thead>
             <tbody>
-              {clients.map((item) => (
+              {clients?.data.map((item) => (
                 <tr key={item.id}>
                   <td>{item.id}</td>
                   <td>{item.name}</td>
@@ -53,8 +65,27 @@ const Clients = () => {
                   </td>
                 </tr>
               ))}
+
             </tbody>
           </Table>
+          <div className="d-flex flex-row justify-content-center">
+            {clients?.data.length !== 0 && totalReg > limit ? (
+              <Paginator
+                previousPagination={previousPagination}
+                nextPagination={nextPagination}
+                changeOffset={changeOffset}
+                offset={offset}
+                pages={pages}
+                pagination={pagination}
+                start={start}
+                end={end}
+              />
+            ) : (
+              ""
+            )}
+          </div>
+          <TotalReg totalReg={totalReg} />
+
         </Card.Body>
       </Card>
     </Container>

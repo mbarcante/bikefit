@@ -4,6 +4,7 @@ import { RimService } from "@/services";
 export class RimController {
   getAllRim = async (_req: Request, res: Response): Promise<void> => {
     try {
+      // console.log("Chegou no Controller")
       const response = await RimService.getAllRims();
       if (!response) {
         res.status(404).json({
@@ -40,6 +41,7 @@ export class RimController {
   createRim = async (req: Request, res: Response): Promise<void> => {
     try {
       const body = req.body;
+      // console.log("###############################", body)
       const response = await RimService.createRim(body);
       if (!response) {
         res.status(404).json({

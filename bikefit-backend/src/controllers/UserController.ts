@@ -2,12 +2,9 @@ import { Request, Response } from "express";
 import UserService from "@/services/UserService";
 
 export class UserController {
-  getAllUsers = async (_req: Request, res: Response): Promise<void> => {
+  getAllUsers = async (req: Request, res: Response): Promise<void> => {
     try {
-      const response = await UserService.getAllUsers();
-      if (!response || response.length === 0) {
-        res.status(404).json({ message: "No users found" });
-      }
+      const response = await UserService.getAllUsers(Number(req.query?.limit), Number(req.query?.offset));
       res.status(200).json(response);
     } catch (error: any) {
       res
@@ -29,14 +26,11 @@ export class UserController {
         .json({ message: "Internal Server Error", error: error.message });
     }
   };
-  createUser = async (req: Request, res: Response): Promise<void> => {
+  getSearchUser = async (req: Request, res: Response): Promise<void> => {
     try {
-      const userData = req.body;
-      const response = await UserService.createUser(userData);
-      if (!response) {
-        res.status(400).json({ message: "User creation failed" });
-      }
-      res.status(201).json(response);
+      const searchTerm = req.params.search as string;
+      const response = await UserService.searchUser(searchTerm);
+      res.status(200).json(response)
     } catch (error: any) {
       res
         .status(500)

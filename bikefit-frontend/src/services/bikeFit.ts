@@ -1,5 +1,5 @@
 import { API_BASE_URL, getStandardHeaders } from './utils';
-import { IBikeFit, IBikeFitCreationPayload } from '../types';
+import { IBikeFitCreationPayload } from 'src/types';
 
 export class BikeFitService {
   getBikefitByBike = async (id: number) => {
@@ -71,4 +71,6 @@ export class BikeFitService {
   };
 }
 
-export default new BikeFitService();
+const bikeFitService = new BikeFitService();
+
+export default bikeFitService;

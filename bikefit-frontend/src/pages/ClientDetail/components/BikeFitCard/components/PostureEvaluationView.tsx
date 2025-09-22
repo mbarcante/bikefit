@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { usePostureEvaluationView } from "./PostureEvaluationView.logic";
 import { Button, Row, Col, Accordion } from "react-bootstrap";
-import postureEvaluation from "../../../../../services/postureEvaluation";
-import Icon from "../../../../../utils/Icons";
 
 interface PEvaluationId {
     id: number;

@@ -5,3 +5,4 @@ export * from './forms';
 export * from './postureEvaluation'
 export * from './user';
 export * from './auth';
+export * from './rim';

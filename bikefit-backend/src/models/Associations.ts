@@ -29,14 +29,6 @@ export const applyAssociations = (sequelize: Sequelize) => {
       as: "user",
     });
   }
-  if (User && Rim) {
-    User.hasMany(Rim, { foreignKey: "UsuarioId", as: "rims" });
-    Rim.belongsTo(User, {
-      foreignKey: "UsuarioId",
-      targetKey: "id",
-      as: "users",
-    });
-  }
   if (User && Bike) {
     User.hasMany(Bike, { foreignKey: "UsuarioId", as: "bikes" });
     Bike.belongsTo(User, {
@@ -60,6 +52,15 @@ export const applyAssociations = (sequelize: Sequelize) => {
       targetKey: "id",
       as: "user",
     });
+  }
+  if (User && Rim) {
+    User.hasMany(Rim, { foreignKey: "UsuarioId", as: "rims" });
+    Rim.belongsTo(User, {
+      foreignKey: "UsuarioId",
+      targetKey: "id",
+      as: "user",
+    });
+
   }
   if (User && Frame) {
     User.hasMany(Frame, { foreignKey: "UsuarioId", as: "frames" });

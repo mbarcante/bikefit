@@ -16,11 +16,11 @@ Rim.init(
       primaryKey: true,
       field: "Id",
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      field: "UsuarioId",
-    },
+    // userId: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    //   field: "UsuarioId",
+    // },
     size: {
       type: DataTypes.STRING(20),
       allowNull: false,

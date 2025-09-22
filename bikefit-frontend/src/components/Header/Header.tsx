@@ -10,7 +10,7 @@ const Header: React.FC = () => {
                 <Nav className="mx-5">
                     <Nav.Link href="/clientes">Clientes</Nav.Link>
                     <Nav.Link href="/usuarios">Usuários </Nav.Link>
-                    <Nav.Link href="#bikes">Bicicletas</Nav.Link>
+                    <Nav.Link href="/tabelas-auxiliares">Tabelas Auxiliares</Nav.Link>
                     <Nav.Link href="#settings">Configurações</Nav.Link>
                 </Nav>
             </Container>

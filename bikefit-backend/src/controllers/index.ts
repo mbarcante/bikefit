@@ -4,3 +4,4 @@ export { default as BikeController } from './BikeController';
 export { default as BikeFitController } from './BikeFitController';
 export { default as PostureEvaluationController } from './PostureEvaluationController';
 export { default as AuthController } from './AuthController'
+export { default as RimController } from './RimController';

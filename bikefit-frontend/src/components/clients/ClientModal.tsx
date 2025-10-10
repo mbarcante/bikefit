@@ -118,11 +118,11 @@ export default function ClientModal({ isOpen, onClose, onSuccess, client }: Clie
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white dark:bg-gray-800 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                 <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
                   <button
                     type="button"
-                    className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                    className="rounded-md bg-white dark:bg-gray-800 text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
                     onClick={onClose}
                   >
                     <span className="sr-only">Close</span>
@@ -132,19 +132,19 @@ export default function ClientModal({ isOpen, onClose, onSuccess, client }: Clie
 
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3 text-center sm:ml-0 sm:mt-0 sm:text-left w-full">
-                    <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
+                    <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900 dark:text-white">
                       {isEditing ? 'Editar Cliente' : 'Novo Cliente'}
                     </Dialog.Title>
-                    
+
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4">
                       <div>
-                        <label htmlFor="name" className="label">
+                        <label htmlFor="name" className="label text-gray-700 dark:text-gray-300">
                           Nome *
                         </label>
                         <input
                           {...register('name')}
                           type="text"
-                          className="input-field"
+                          className="input-field bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-teal-500 focus:border-teal-500"
                           placeholder="Nome completo"
                         />
                         {errors.name && (
@@ -153,13 +153,13 @@ export default function ClientModal({ isOpen, onClose, onSuccess, client }: Clie
                       </div>
 
                       <div>
-                        <label htmlFor="email" className="label">
+                        <label htmlFor="email" className="label text-gray-700 dark:text-gray-300">
                           Email *
                         </label>
                         <input
                           {...register('email')}
                           type="email"
-                          className="input-field"
+                          className="input-field bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-teal-500 focus:border-teal-500"
                           placeholder="email@exemplo.com"
                         />
                         {errors.email && (
@@ -169,10 +169,10 @@ export default function ClientModal({ isOpen, onClose, onSuccess, client }: Clie
 
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label htmlFor="sex" className="label">
+                          <label htmlFor="sex" className="label text-gray-700 dark:text-gray-300">
                             Sexo *
                           </label>
-                          <select {...register('sex')} className="input-field">
+                          <select {...register('sex')} className="input-field bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-teal-500 focus:border-teal-500">
                             <option value="">Selecione</option>
                             <option value="M">Masculino</option>
                             <option value="F">Feminino</option>
@@ -183,13 +183,13 @@ export default function ClientModal({ isOpen, onClose, onSuccess, client }: Clie
                         </div>
 
                         <div>
-                          <label htmlFor="birthDate" className="label">
+                          <label htmlFor="birthDate" className="label text-gray-700 dark:text-gray-300">
                             Data de Nascimento *
                           </label>
                           <input
                             {...register('birthDate')}
                             type="date"
-                            className="input-field"
+                            className="input-field bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-teal-500 focus:border-teal-500"
                           />
                           {errors.birthDate && (
                             <p className="mt-1 text-sm text-red-600">{errors.birthDate.message}</p>
@@ -199,13 +199,13 @@ export default function ClientModal({ isOpen, onClose, onSuccess, client }: Clie
 
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label htmlFor="cellphone" className="label">
+                          <label htmlFor="cellphone" className="label text-gray-700 dark:text-gray-300">
                             Celular *
                           </label>
                           <input
                             {...register('cellphone')}
                             type="tel"
-                            className="input-field"
+                            className="input-field bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-teal-500 focus:border-teal-500"
                             placeholder="(11) 99999-9999"
                           />
                           {errors.cellphone && (
@@ -214,26 +214,26 @@ export default function ClientModal({ isOpen, onClose, onSuccess, client }: Clie
                         </div>
 
                         <div>
-                          <label htmlFor="profession" className="label">
+                          <label htmlFor="profession" className="label text-gray-700 dark:text-gray-300">
                             Profissão
                           </label>
                           <input
                             {...register('profession')}
                             type="text"
-                            className="input-field"
+                            className="input-field bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-teal-500 focus:border-teal-500"
                             placeholder="Profissão"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label htmlFor="observations" className="label">
+                        <label htmlFor="observations" className="label text-gray-700 dark:text-gray-300">
                           Observações
                         </label>
                         <textarea
                           {...register('observations')}
                           rows={3}
-                          className="input-field"
+                          className="input-field bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-teal-500 focus:border-teal-500"
                           placeholder="Observações adicionais..."
                         />
                       </div>
@@ -242,13 +242,13 @@ export default function ClientModal({ isOpen, onClose, onSuccess, client }: Clie
                         <button
                           type="submit"
                           disabled={isLoading}
-                          className="inline-flex w-full justify-center btn-primary sm:ml-3 sm:w-auto disabled:opacity-50"
+                          className="inline-flex w-full justify-center btn-primary sm:ml-3 sm:w-auto bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50"
                         >
                           {isLoading ? 'Salvando...' : isEditing ? 'Atualizar' : 'Criar'}
                         </button>
                         <button
                           type="button"
-                          className="mt-3 inline-flex w-full justify-center btn-secondary sm:mt-0 sm:w-auto"
+                          className="mt-3 inline-flex w-full justify-center btn-secondary sm:mt-0 sm:w-auto border border-gray-300 dark:border-gray-700 rounded-md shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 sm:text-sm"
                           onClick={onClose}
                         >
                           Cancelar

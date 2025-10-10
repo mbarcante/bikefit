@@ -14,11 +14,11 @@ export default function ClientInfo({ client }: ClientInfoProps) {
     const birth = new Date(birthDate)
     let age = today.getFullYear() - birth.getFullYear()
     const monthDiff = today.getMonth() - birth.getMonth()
-    
+
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
       age--
     }
-    
+
     return age
   }
 
@@ -27,40 +27,40 @@ export default function ClientInfo({ client }: ClientInfoProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="card p-6"
+      className="card p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md"
     >
       <div className="text-center mb-6">
-        <div className="mx-auto h-20 w-20 rounded-full bg-primary-100 flex items-center justify-center mb-4">
-          <span className="text-2xl font-bold text-primary-700">
+        <div className="mx-auto h-20 w-20 rounded-full bg-teal-100 dark:bg-teal-900 flex items-center justify-center mb-4">
+          <span className="text-2xl font-bold text-teal-700 dark:text-teal-400">
             {client.name.charAt(0).toUpperCase()}
           </span>
         </div>
-        <h2 className="text-xl font-semibold text-gray-900">{client.name}</h2>
-        <p className="text-gray-500">Cliente #{client.id}</p>
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{client.name}</h2>
+        <p className="text-gray-500 dark:text-gray-400">Cliente #{client.id}</p>
       </div>
 
       <div className="space-y-4">
         <div className="flex items-center space-x-3">
-          <EnvelopeIcon className="h-5 w-5 text-gray-400" />
+          <EnvelopeIcon className="h-5 w-5 text-gray-400 dark:text-gray-500" />
           <div>
-            <p className="text-sm font-medium text-gray-900">Email</p>
-            <p className="text-sm text-gray-500">{client.email}</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-white">Email</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">{client.email}</p>
           </div>
         </div>
 
         <div className="flex items-center space-x-3">
-          <PhoneIcon className="h-5 w-5 text-gray-400" />
+          <PhoneIcon className="h-5 w-5 text-gray-400 dark:text-gray-500" />
           <div>
-            <p className="text-sm font-medium text-gray-900">Telefone</p>
-            <p className="text-sm text-gray-500">{client.cellphone}</p>
+            <p className="text-sm font-medium text-gray-900 dark:text-white">Telefone</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">{client.cellphone}</p>
           </div>
         </div>
 
         <div className="flex items-center space-x-3">
-          <UserIcon className="h-5 w-5 text-gray-400" />
+          <UserIcon className="h-5 w-5 text-gray-400 dark:text-gray-500" />
           <div>
-            <p className="text-sm font-medium text-gray-900">Informações</p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm font-medium text-gray-900 dark:text-white">Informações</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               {client.sex === 'M' ? 'Masculino' : 'Feminino'}, {calculateAge(client.birthDate)} anos
             </p>
           </div>
@@ -68,28 +68,28 @@ export default function ClientInfo({ client }: ClientInfoProps) {
 
         {client.profession && (
           <div className="flex items-center space-x-3">
-            <UserIcon className="h-5 w-5 text-gray-400" />
+            <UserIcon className="h-5 w-5 text-gray-400 dark:text-gray-500" />
             <div>
-              <p className="text-sm font-medium text-gray-900">Profissão</p>
-              <p className="text-sm text-gray-500">{client.profession}</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-white">Profissão</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{client.profession}</p>
             </div>
           </div>
         )}
 
         <div className="flex items-center space-x-3">
-          <CalendarIcon className="h-5 w-5 text-gray-400" />
+          <CalendarIcon className="h-5 w-5 text-gray-400 dark:text-gray-500" />
           <div>
-            <p className="text-sm font-medium text-gray-900">Cliente desde</p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm font-medium text-gray-900 dark:text-white">Cliente desde</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               {new Date(client.createdAt).toLocaleDateString('pt-BR')}
             </p>
           </div>
         </div>
 
         {client.observations && (
-          <div className="pt-4 border-t border-gray-200">
-            <p className="text-sm font-medium text-gray-900 mb-2">Observações</p>
-            <p className="text-sm text-gray-500">{client.observations}</p>
+          <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+            <p className="text-sm font-medium text-gray-900 dark:text-white mb-2">Observações</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">{client.observations}</p>
           </div>
         )}
       </div>

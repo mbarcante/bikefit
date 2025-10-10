@@ -54,8 +54,16 @@ services:
       - ./bikefit-frontend:/app
       - /app/node_modules 
     environment:
-      CHOKIDAR_USEPOLLING: "true"
-      REACT_APP_API_URL: http://localhost:3001
+      WATCHPACK_POLLING: "true"
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+    
+    # entrypoint: ["/bin/sh", "-c", "chown -R node:node /app"]
+
+    # user: "node" 
+
+    command: ["/bin/sh", "-c", "npm run dev"]
+
+    
     depends_on:
       - backend #
 

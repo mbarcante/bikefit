@@ -35,11 +35,13 @@ export default function BikesSection({ clientId }: BikesSectionProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="card"
+      className="card bg-white dark:bg-gray-800 rounded-lg shadow-md"
     >
-      <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-gray-900">Bicicletas</h3>
-        <button className="btn-primary text-sm inline-flex items-center">
+      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Bicicletas</h3>
+        <button
+          className="btn-primary text-sm inline-flex items-center bg-teal-600 text-white rounded-md px-3 py-2 hover:bg-teal-700 transition-colors"
+        >
           <PlusIcon className="h-4 w-4 mr-1" />
           Adicionar
         </button>
@@ -49,13 +51,13 @@ export default function BikesSection({ clientId }: BikesSectionProps) {
         {isLoading ? (
           <div className="animate-pulse space-y-4">
             {[...Array(2)].map((_, i) => (
-              <div key={i} className="h-20 bg-gray-200 rounded"></div>
+              <div key={i} className="h-20 bg-gray-200 dark:bg-gray-700 rounded"></div>
             ))}
           </div>
         ) : bikes.length === 0 ? (
           <div className="text-center py-8">
             <svg
-              className="mx-auto h-12 w-12 text-gray-400"
+              className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -67,8 +69,8 @@ export default function BikesSection({ clientId }: BikesSectionProps) {
                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
               />
             </svg>
-            <h3 className="mt-2 text-sm font-semibold text-gray-900">Nenhuma bicicleta</h3>
-            <p className="mt-1 text-sm text-gray-500">
+            <h3 className="mt-2 text-sm font-semibold text-gray-900 dark:text-white">Nenhuma bicicleta</h3>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
               Este cliente ainda não possui bicicletas cadastradas.
             </p>
           </div>
@@ -77,25 +79,25 @@ export default function BikesSection({ clientId }: BikesSectionProps) {
             {bikes.map((bike) => (
               <div
                 key={bike.id}
-                className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors duration-200"
+                className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-sm font-medium text-gray-900">
+                    <h4 className="text-sm font-medium text-gray-900 dark:text-white">
                       {bike.brand} {bike.model}
                     </h4>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
                       {bike.type} • Tamanho {bike.size} • Aro {bike.rim}
                     </p>
                     {bike.year && (
-                      <p className="text-xs text-gray-400">Ano: {bike.year}</p>
+                      <p className="text-xs text-gray-400 dark:text-gray-500">Ano: {bike.year}</p>
                     )}
                   </div>
                   <div className="flex space-x-2">
-                    <button className="text-primary-600 hover:text-primary-900 text-sm">
+                    <button className="text-teal-600 dark:text-teal-400 hover:text-teal-900 dark:hover:text-teal-300 text-sm">
                       Ver
                     </button>
-                    <button className="text-blue-600 hover:text-blue-900 text-sm">
+                    <button className="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 text-sm">
                       Editar
                     </button>
                   </div>

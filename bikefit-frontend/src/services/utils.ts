@@ -3,7 +3,7 @@ export const API_BASE_URL =
 
 export const getAuthToken = (): string | null => {
   if (typeof window === 'undefined') return null;
-  
+
   const tokens = sessionStorage.getItem("session");
   if (!tokens) return null;
   try {
